@@ -4,33 +4,33 @@ namespace Coindb;
 
 class CoindbRoutes implements \FrameWork\Routes
 {
-    private $authorsTable;
-    private $jokesTable;
+    private $usersTable;
+    private $articlesTable;
     private $authentication;
 
     public function __construct(){
         include __DIR__ . '/../../includes/DatabaseConnection.php';
 
-        $this -> jokesTable = new \FrameWork\DatabaseTable( $pdo, 'joke', 'id' );
-        $this -> authorsTable = new \FrameWork\DatabaseTable( $pdo, 'author', 'id' );
-        $this -> authentication = new \FrameWork\Authentication( $this -> authorsTable, 'email', 'password');
+        $this -> articlesTable = new \FrameWork\DatabaseTable( $pdo, 'articles', 'id' );
+        $this -> usersTable = new \FrameWork\DatabaseTable( $pdo, 'user', 'id' );
+        $this -> authentication = new \FrameWork\Authentication( $this -> usersTable, 'email', 'password');
     }
 
     public function getRoutes(): array
     {
 
-        $authorController = new \Coindb\Controllers\Register( $this -> authorsTable );
-        $jokeController = new \Coindb\Controllers\Joke($this -> jokesTable, $this -> authorsTable, $this -> authentication);
+        $userController = new \Coindb\Controllers\Register( $this -> articlesTable );
+        $articleController = new \Coindb\Controllers\Coin($this -> articlesTable, $this -> usersTable, $this -> authentication);
         $loginController = new \Coindb\Controllers\Login($this->authentication);
         
         $routes = [
-            'author/register' => [
+            'user/register' => [
                 'GET' => [
-                    'controller' => $authorController,
+                    'controller' => $userController,
                     'action' => 'registrationForm'
                 ],
                 'POST' => [
-                    'controller' => $authorController,
+                    'controller' => $userController,
                     'action' => 'registerUser'
                 ]
                 ],
@@ -62,39 +62,39 @@ class CoindbRoutes implements \FrameWork\Routes
                     'action' => 'logout'
                 ]
                 ],
-            'author/success' => [
+            'user/success' => [
                 'GET' => [
-                    'controller' => $authorController,
+                    'controller' => $userController,
                     'action' => 'success'
                 ]
             ],
-            'joke/edit' => [
+            'article/edit' => [
                 'POST' => [
-                    'controller' => $jokeController,
+                    'controller' => $articleController,
                     'action' => 'saveEdit'
                 ],
                 'GET' => [
-                    'controller' => $jokeController,
+                    'controller' => $articleController,
                     'action' => 'edit'
                 ],
                 'login' => true
                 ],
-                'joke/delete' => [
+                'article/delete' => [
                     'POST' => [
-                        'controller' => $jokeController,
+                        'controller' => $articleController,
                         'action' => 'delete'
                     ],
                     'login' => true
                 ],
-                'joke/list' => [
+                'article/list' => [
                     'GET' =>[
-                        'controller' => $jokeController,
+                        'controller' => $articleController,
                         'action' => 'list'
                     ]
                     ],
                 ''=>[
                     'GET' => [
-                        'controller' => $jokeController,
+                        'controller' => $articleController,
                         'action' => 'home'
                     ]
                 ]
