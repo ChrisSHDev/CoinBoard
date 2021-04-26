@@ -1,38 +1,40 @@
-<?php 
+<?php
 
 namespace Coindb\Controllers;
+
 use \FrameWork\DatabaseTable;
 use \FrameWork\Authentication;
 
-
-class Coin{
+class Coin
+{
     private $usersTable;
     private $articlesTable;
 
-    public function __construct( DatabaseTable $articlesTable, DatabaseTable $usersTable, Authentication $authentication )
+    public function __construct(DatabaseTable $articlesTable, DatabaseTable $usersTable, Authentication $authentication)
     {
         $this -> articlesTable = $articlesTable;
         $this -> usersTable = $usersTable;
         $this -> authentication = $authentication;
     }
 
-    public function list() {
+    public function list()
+    {
         $result = $this -> articlesTable -> findAll();
 
         $jokes = [];
 
-        foreach ( $result as $article ) {
-            $user = $this -> usersTable -> findById( $article['userId']);
+        foreach ($result as $article) {
+            $user = $this -> usersTable -> findById($article['userId']);
 
             $articles[] = [
                 'id' => $article['id'],
                 'articlecontents' => $article['articlecontents'],
+                'articlesubject' => $article['articlesubject'],
                 'articledate' => $article['articledate'],
                 'name' => $user['name'],
                 'email' => $user['email'],
                 'userId' => $user['id']
             ];
-
         }
 
 
@@ -42,7 +44,7 @@ class Coin{
 
         $author = $this -> authentication -> getUser();
 
-            return ['template' => 'jokes.html.php', 
+        return ['template' => 'articles.html.php',
                      'title' => $title,
                      'variables' => [
                         'totalArticles' => $totalArticles,
@@ -51,59 +53,60 @@ class Coin{
                      ]
                     ];
     }
-
-    public function home() {
-
+    
+    public function home()
+    {
         $result = $this -> articlesTable -> findAll();
 
         $jokes = [];
 
-        foreach ( $result as $article ) {
-            $user = $this -> usersTable -> findById( $article['userId']);
+        foreach ($result as $article) {
+            $user = $this -> usersTable -> findById($article['userId']);
 
             $articles[] = [
                 'id' => $article['id'],
                 'articlesubject' => $article['articlesubject'],
                 'articlecontents' => $article['articlecontents'],
                 'articledate' => $article['articledate'],
+                'categoryId' => $article['categoryId'],
                 'name' => $user['name'],
                 'email' => $user['email'],
                 'userId' => $user['id']
             ];
-
         }
 
-        $title = 'Online Joke World';
+        $title = 'Welcome to Coin Board';
 
-        return [ 'template' => 'home.html.php', 
+        return [ 'template' => 'home.html.php',
                   'title' => $title,
                   'variables' => [
                     'articles' => $articles,
                     'userId' => $user['id'] ?? null
-                 ]        
+                 ]
              ];
-
     }
 
-    public function delete() {
+    public function delete()
+    {
         $user = $this -> authentication -> getUser();
 
         $article = $this -> articleTable -> findById($_GET['id']);
-        if( $article['authorId'] != $user['id']){
+        if ($article['authorId'] != $user['id']) {
             return;
         }
 
-        $this -> articlesTable -> delete( $_POST{'id'});
+        $this -> articlesTable -> delete($_POST{'id'});
 
         header('location: /joke/list');
     }
 
-    public function saveEdit() {
+    public function saveEdit()
+    {
         $author = $this -> authentication -> getUser();
 
-        if(isset($_GET['id'])){
+        if (isset($_GET['id'])) {
             $article = $this -> articlesTable -> findById($_GET['id']);
-            if( $article['userId'] != $user['id']){
+            if ($article['userId'] != $user['id']) {
                 return;
             }
         }
@@ -117,16 +120,17 @@ class Coin{
         header('location: /joke/list');
     }
 
-    public function edit() {
+    public function edit()
+    {
         $author = $this -> authentication -> getUser();
         var_dump($author);
-        if(isset($_GET['id'])){
+        if (isset($_GET['id'])) {
             $joke = $this -> jokesTable -> findById($_GET['id']);
         }
 
-            $title = 'Edit Joke Article';
+        $title = 'Edit Joke Article';
 
-            return ['template' => 'editjoke.html.php', 
+        return ['template' => 'editjoke.html.php',
                     'title' => $title,
                     'variables' => [
                         'joke' => $joke ?? null,
@@ -134,6 +138,5 @@ class Coin{
                     ]
                     
                 ];
-    
     }
 }
