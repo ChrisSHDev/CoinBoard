@@ -20,17 +20,19 @@
         <td>
           <?php echo $article['articledate']; ?>
         </td>
+        <?php if ($userId == $article['userId']) : ?>
+        <td class="d-flex">
 
-        <td>
-          <?php if ($userId == $article['userId']) : ?>
-          <a class="btn btn-primary btn-lg" role="button" href="/article/edit?id=<?php echo $article['id']?>">Edit</a>
+          <?php echo $userId ?>
+          <a class="btn btn-dark" role="button" href="/article/edit?id=<?php echo $article['id']?>">Edit</a>
 
           <form action="/article/delete" method="post">
             <input type="hidden" name="id" value="<?=$article['id']?>">
-            <input class="btn btn-primary btn-lg" type="submit" value="Delete">
+            <input class="btn btn-dark" type="submit" value="Delete">
           </form>
-          <?php endif; ?>
+
         </td>
+        <?php endif; ?>
       </tr>
       <?php endforeach; ?>
     </tbody>

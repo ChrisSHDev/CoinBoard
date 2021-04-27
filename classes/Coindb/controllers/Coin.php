@@ -49,7 +49,7 @@ class Coin
                      'variables' => [
                         'totalArticles' => $totalArticles,
                         'articles' => $articles,
-                        'userId' => $user['id'] ?? null
+                        'userId' => $author['id'] ?? null
                      ]
                     ];
     }
