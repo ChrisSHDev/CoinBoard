@@ -58,8 +58,8 @@
               </a>
               <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                 <li><a class="dropdown-item" href="/article/list">All Articles</a></li>
-                <li><a class="dropdown-item" href="/bit">Bitcoin</a></li>
-                <li><a class="dropdown-item" href="/alt">Altcoin</a></li>
+                <li><a class="dropdown-item" href="/article/list?categoryId=1">Bitcoin</a></li>
+                <li><a class="dropdown-item" href="/article/list?categoryId=2">Altcoin</a></li>
               </ul>
             </li>
             <li class="nav-item">

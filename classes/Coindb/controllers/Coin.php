@@ -19,8 +19,14 @@ class Coin
 
     public function list()
     {
-        $result = $this -> articlesTable -> findAll();
-
+        if (isset($_GET['categoryId'])) {
+            $result = $this -> articlesTable -> find('categoryId', $_GET['categoryId']);
+            $totalArticles = count($result);
+        } else {
+            $result = $this -> articlesTable -> findAll();
+            $totalArticles = $this -> articlesTable -> total();
+        }
+        
         $jokes = [];
 
         foreach ($result as $article) {
@@ -39,8 +45,6 @@ class Coin
 
 
         $title = 'Free Board';
-
-        $totalArticles = $this -> articlesTable -> total();
 
         $author = $this -> authentication -> getUser();
 
@@ -138,5 +142,20 @@ class Coin
                     ]
                     
                 ];
+    }
+
+    public function show()
+    {
+        if (isset($_GET['id'])) {
+            $article = $this -> articlesTable -> findById($_GET['id']);
+        }
+
+        $title = 'Article Page';
+
+        return ['template' => 'single-article.html.php',
+              'title' => $title,
+              'variables' => [
+                'article' => $article ?? null
+              ]];
     }
 }

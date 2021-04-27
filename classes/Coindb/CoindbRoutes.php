@@ -92,6 +92,12 @@ class CoindbRoutes implements \FrameWork\Routes
                         'action' => 'list'
                     ]
                     ],
+                  'article/page' => [
+                    'GET' => [
+                      'controller' => $articleController,
+                      'action' => 'show'
+                    ]
+                    ],
                 ''=>[
                     'GET' => [
                         'controller' => $articleController,

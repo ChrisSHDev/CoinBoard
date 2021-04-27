@@ -5,7 +5,7 @@
 </div>
 
 <div class="board-section row">
-  <div class="col freeboardbox">
+  <div class="col freeboard-box">
     <h3>Bitcoin Forum</h3>
     <table class="table table-striped table-hover">
       <tbody>
@@ -14,7 +14,7 @@
         <tr>
 
           <td class="table-subject">
-            <a href="/article/id?id=<?php echo $article['id'] ?>">
+            <a href="/article/page?id=<?php echo $article['id'] ?>">
               <?php echo htmlspecialchars($article['articlesubject'], ENT_QUOTES, 'UTF-8')  ?>
             </a>
           </td>
@@ -37,7 +37,7 @@
 
   </div>
 
-  <div class="col discussion-box">
+  <div class="col freeboard-box">
     <h3>Altcoin Forum</h3>
     <table class="table table-striped table-hover">
       <tbody>
@@ -46,7 +46,7 @@
         <tr>
 
           <td class="table-subject">
-            <a href="/article/id?id=<?php echo $article['id'] ?>">
+            <a href="/article/page?id=<?php echo $article['id'] ?>">
               <?php echo htmlspecialchars($article['articlesubject'], ENT_QUOTES, 'UTF-8')  ?>
             </a>
           </td>
