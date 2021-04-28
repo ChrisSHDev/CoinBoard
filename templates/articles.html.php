@@ -1,14 +1,26 @@
 <div class="col discussion-box">
 
   <h3>All Articles</h3>
-  <p>There are <?php echo $totalArticles ?> Articles in total.</p>
+  <p>There are <?php echo $totalArticles ?> Articles in total.</p> <a href="/article/edit">Add</a>
 
   <table class="table table-striped table-hover">
     <tbody>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Title</th>
+        <th scope="col">Author</th>
+        <th scope="col">Date</th>
+      </tr>
       <?php foreach ($articles as $article): ?>
       <tr>
         <td>
-          <?php echo htmlspecialchars($article['articlesubject'], ENT_QUOTES, 'UTF-8')  ?>
+          <?php echo htmlspecialchars($article['id'], ENT_QUOTES, 'UTF-8')  ?>
+        </td>
+
+        <td>
+          <a href="/article/page?id=<?php echo $article['id'] ?>">
+            <?php echo htmlspecialchars($article['articlesubject'], ENT_QUOTES, 'UTF-8')  ?>
+          </a>
         </td>
 
         <td>

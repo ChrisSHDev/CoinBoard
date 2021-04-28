@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace Coindb;
 
@@ -8,18 +8,18 @@ class CoindbRoutes implements \FrameWork\Routes
     private $articlesTable;
     private $authentication;
 
-    public function __construct(){
+    public function __construct()
+    {
         include __DIR__ . '/../../includes/DatabaseConnection.php';
 
-        $this -> articlesTable = new \FrameWork\DatabaseTable( $pdo, 'articles', 'id' );
-        $this -> usersTable = new \FrameWork\DatabaseTable( $pdo, 'user', 'id' );
-        $this -> authentication = new \FrameWork\Authentication( $this -> usersTable, 'email', 'password');
+        $this -> articlesTable = new \FrameWork\DatabaseTable($pdo, 'articles', 'id');
+        $this -> usersTable = new \FrameWork\DatabaseTable($pdo, 'user', 'id');
+        $this -> authentication = new \FrameWork\Authentication($this -> usersTable, 'email', 'password');
     }
 
     public function getRoutes(): array
     {
-
-        $userController = new \Coindb\Controllers\Register( $this -> articlesTable );
+        $userController = new \Coindb\Controllers\Register($this -> usersTable);
         $articleController = new \Coindb\Controllers\Coin($this -> articlesTable, $this -> usersTable, $this -> authentication);
         $loginController = new \Coindb\Controllers\Login($this->authentication);
         

@@ -1,19 +1,20 @@
-<?php 
+<?php
 namespace Coindb\Controllers;
+
 use \FrameWork\DatabaseTable;
 
 class Register
 {
-    private $authorsTable;
+    private $usersTable;
 
-    public function __construct( DatabaseTable $authorsTable )
+    public function __construct(DatabaseTable $usersTable)
     {
-        $this -> authorsTable = $authorsTable;
+        $this -> usersTable = $usersTable;
     }
 
     public function registrationForm()
     {
-        return ['template' => 'register.html.php', 
+        return ['template' => 'register.html.php',
         'title' => 'Register User'];
     }
 
@@ -22,58 +23,52 @@ class Register
         return ['template' => 'registersuccess.html.php', 'title' => 'Your account is registered!'];
     }
 
-    public function registerUser() {
-        $author = $_POST['author'];
+    public function registerUser()
+    {
+        $user = $_POST['user'];
 
         $valid = true;
 
         $errors = [];
 
+        
 
-
-        if(empty($author['name'])){
+        if (empty($user['name'])) {
             $valid = false;
             $errors[] = 'A name is a required field';
         }
 
-        if(empty($author['email'])){
+        if (empty($user['email'])) {
             $valid = false;
             $errors[] = 'An email is a required field';
-        }elseif( filter_var($author['email'], FILTER_VALIDATE_EMAIL) == false ){
+        } elseif (filter_var($user['email'], FILTER_VALIDATE_EMAIL) == false) {
             $valid = false;
             $errors[] = 'It\' unvalide email address';
-        }else{
-            $author['email'] = strtolower($author['email']);
+        } else {
+            $user['email'] = strtolower($user['email']);
         }
 
-        if(count( $this-> authorsTable -> find('email', $author['email']))>0 ){
+        if (count($this-> usersTable -> find('email', $user['email']))>0) {
             $valid = false;
             $errors[] = 'You already have an account';
         }
 
-        if(empty($author['password'])){
+        if (empty($user['password'])) {
             $valid = false;
             $errors[] = 'A password is a required field';
         }
 
-        if( $valid == true) {
-            $author['password'] = \password_hash( $author['password'], PASSWORD_DEFAULT);
+        if ($valid == true) {
+            $user['password'] = \password_hash($user['password'], PASSWORD_DEFAULT);
 
-            $this -> authorsTable -> save($author);
+            $this -> usersTable -> save($user);
 
-            header('Location: /author/success');
-        }
-
-        if( $valid == true ){
-            $this -> authorsTAble -> save( $author );
-
-            header('Location: /author/success');
-        }
-        else{
+            header('Location: /user/success');
+        } else {
             return['template' => 'register.html.php', 'title' => 'Register User',
             'variables' => [
                 'errors' => $errors,
-                'author' => $author
+                'user' => $user
                 ]
             ];
         }

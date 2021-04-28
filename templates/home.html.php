@@ -1,11 +1,5 @@
-<div class="coinapibox">
-
-  this is for api information
-
-</div>
-
-<div class="board-section row">
-  <div class="col freeboard-box">
+<div class="row board-section">
+  <div class="col-6 freeboard-box">
     <h3>Bitcoin Forum</h3>
     <table class="table table-striped table-hover">
       <tbody>
@@ -37,7 +31,7 @@
 
   </div>
 
-  <div class="col freeboard-box">
+  <div class="col-6 freeboard-box">
     <h3>Altcoin Forum</h3>
     <table class="table table-striped table-hover">
       <tbody>

@@ -1,3 +1,6 @@
 td.table-subject {
     width: 67%;
 }
+.blog-header-logo.text-dark img {
+  max-width: 200px;
+}

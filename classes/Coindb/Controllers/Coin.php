@@ -27,7 +27,7 @@ class Coin
             $totalArticles = $this -> articlesTable -> total();
         }
         
-        $jokes = [];
+        $articles = [];
 
         foreach ($result as $article) {
             $user = $this -> usersTable -> findById($article['userId']);
@@ -94,19 +94,19 @@ class Coin
     {
         $user = $this -> authentication -> getUser();
 
-        $article = $this -> articleTable -> findById($_GET['id']);
-        if ($article['authorId'] != $user['id']) {
+        $article = $this -> articlesTable -> findById($_POST['id']);
+        if ($article['userId'] != $user['id']) {
             return;
         }
 
         $this -> articlesTable -> delete($_POST{'id'});
 
-        header('location: /joke/list');
+        header('location: /article/list');
     }
 
     public function saveEdit()
     {
-        $author = $this -> authentication -> getUser();
+        $user = $this -> authentication -> getUser();
 
         if (isset($_GET['id'])) {
             $article = $this -> articlesTable -> findById($_GET['id']);
@@ -117,28 +117,28 @@ class Coin
 
         $article = $_POST['article'];
         $article['articledate'] = new \DateTime();
-        $article['userId'] = $author['id'];
+        $article['userId'] = $user['id'];
 
         $this -> articlesTable -> save($article);
 
-        header('location: /joke/list');
+        header('location: /article/list');
     }
 
     public function edit()
     {
-        $author = $this -> authentication -> getUser();
-        var_dump($author);
+        $user = $this -> authentication -> getUser();
+        
         if (isset($_GET['id'])) {
-            $joke = $this -> jokesTable -> findById($_GET['id']);
+            $article = $this -> articlesTable -> findById($_GET['id']);
         }
 
         $title = 'Edit Joke Article';
 
-        return ['template' => 'editjoke.html.php',
+        return ['template' => 'editarticle.html.php',
                     'title' => $title,
                     'variables' => [
-                        'joke' => $joke ?? null,
-                        'userId' => $author['id'] ?? null
+                        'article' => $article ?? null,
+                        'userId' => $user['id'] ?? null
                     ]
                     
                 ];
