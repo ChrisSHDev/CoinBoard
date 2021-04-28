@@ -50,6 +50,8 @@ class Coin
         $title = 'Free Board';
 
         $author = $this -> authentication -> getUser();
+        
+        $isLoggedIn = $this -> authentication -> isLoggedIn();
 
         return ['template' => 'articles.html.php',
                      'title' => $title,
@@ -57,7 +59,8 @@ class Coin
                         'totalArticles' => $totalArticles,
                         'articles' => $articles,
                         'categoryId' => $categoryId,
-                        'userId' => $author['id'] ?? null
+                        'userId' => $author['id'] ?? null,
+                        'loggedIn' => $isLoggedIn
                      ]
                     ];
     }
@@ -152,6 +155,7 @@ class Coin
     {
         if (isset($_GET['id'])) {
             $article = $this -> articlesTable -> findById($_GET['id']);
+            $user = $this -> usersTable -> findById($article['userId']);
         }
 
         $title = 'Article Page';
@@ -159,7 +163,8 @@ class Coin
         return ['template' => 'single-article.html.php',
               'title' => $title,
               'variables' => [
-                'article' => $article ?? null
+                'article' => $article ?? null,
+                'user' => $user['name']
               ]];
     }
 }

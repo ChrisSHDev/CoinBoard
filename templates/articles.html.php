@@ -16,8 +16,9 @@
       <?php endif; ?>
       Articles
     </h3>
-
+    <?php if ($loggedIn) : ?>
     <a href="/article/edit" class="btn btn-dark ml-1" role="button">Add</a>
+    <?php endif ?>
 
   </div>
   <table class="table table-striped table-hover">

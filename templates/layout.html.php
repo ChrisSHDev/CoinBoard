@@ -86,7 +86,7 @@
     </div>
   </main>
 
-  <footer class="container-xl">
+  <footer class="container-xl d-flex justify-content-center">
     <div class="row">
       &copy; Coindb 2021
     </div>
