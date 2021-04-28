@@ -22,9 +22,11 @@ class Coin
         if (isset($_GET['categoryId'])) {
             $result = $this -> articlesTable -> find('categoryId', $_GET['categoryId']);
             $totalArticles = count($result);
+            $categoryId = $_GET['categoryId'];
         } else {
             $result = $this -> articlesTable -> findAll();
             $totalArticles = $this -> articlesTable -> total();
+            $categoryId = '';
         }
         
         $articles = [];
@@ -37,6 +39,7 @@ class Coin
                 'articlecontents' => $article['articlecontents'],
                 'articlesubject' => $article['articlesubject'],
                 'articledate' => $article['articledate'],
+                'categoryId' => $article['categoryId'],
                 'name' => $user['name'],
                 'email' => $user['email'],
                 'userId' => $user['id']
@@ -53,6 +56,7 @@ class Coin
                      'variables' => [
                         'totalArticles' => $totalArticles,
                         'articles' => $articles,
+                        'categoryId' => $categoryId,
                         'userId' => $author['id'] ?? null
                      ]
                     ];

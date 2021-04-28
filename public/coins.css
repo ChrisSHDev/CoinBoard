@@ -1,6 +1,22 @@
-td.table-subject {
+.table-subject {
     width: 67%;
 }
 .blog-header-logo.text-dark img {
   max-width: 200px;
+}
+
+.table-btn-col {
+  width: 13%;
+}
+
+a{
+  text-decoration: none !important;
+}
+
+p {
+  margin-bottom: 0px !important;
+}
+
+.d-flex.align-items-center.justify-content-between.gx-5.table-title-box {
+  margin: 20px 0px;
 }

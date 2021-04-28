@@ -2,14 +2,23 @@
 
 <form action="" method="post">
   <input type="hidden" name="article[id]" value="<?php echo $article['id'] ?? ''; ?>">
-  <label for="title">Title</label>
-  <input id="title" name="article[articlesubject]" type="text" maxlength="300" tabindex="100" value=""
-    data-min-length="15" data-max-length="150">
-  <label for="articlecontents">Body</label>
-  <textarea id="articlecontents" name="article[articlecontents]" cols="92" rows="15" tabindex="101" data-min-length=""
-    spellcheck="false">
-    <?php echo $article['articlecontents'] ?? ''; ?>
-    </textarea>
+  <div class="mb-3">
+    <label for="title" class="form-label">Title</label>
+    <input id="articlesubject" class="form-control" name="article[articlesubject]" type="text" maxlength="300"
+      tabindex="100" data-min-length="15" data-max-length="150" value="<?php echo $article['articlesubject'] ?? ''; ?>">
+  </div>
+  <div class="mb-3">
+    <label for="articlecontents" class="form-label">Body</label>
+    <textarea id="articlecontents" class="form-control" name="article[articlecontents]" cols="92" rows="15"
+      tabindex="101" data-min-length="" spellcheck="false"><?php echo $article['articlecontents'] ?? ''; ?></textarea>
+  </div>
+  <div class="mb-3">
+    <label for="category" class="form-label">Disabled select menu</label>
+    <select id="categoryId" name="article[categoryId]" class="form-select">
+      <option value="1">Bitcoin</option>
+      <option value="2">Altcoin</option>
+    </select>
+  </div>
   <input type="submit" name="submit" value="Submit">
 </form>
 <?php else: ?>
