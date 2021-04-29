@@ -77,39 +77,7 @@
     <div class="row">
       <div class="coinapibox">
 
-        <?php
-        
-          $apiUrl = "https://api.coinbase.com/v2/exchange-rates?currency=";
 
-          $coinNames = [
-            1 => 'BTC',
-            2 => 'XRP',
-            3 => 'ETH',
-            4 => 'LTC',
-            5 => 'BCH'
-          ];
-
-          $coinInfo =[] ;
-
-          foreach ($coinNames as $eachCoin) {
-              $getValueUrl = $apiUrl . $eachCoin;
-      
-              $json = \json_decode(\file_get_contents($getValueUrl), true);
-
-              $coinInfos[] = [
-                'title' => $json['data']['currency'],
-                'price' => $json['data']['rates']['CAD']
-              ];
-          }
-
-          var_dump($coinInfos);
-          
-          foreach ($coinInfos as $coinInfo) {
-              echo($coinInfo['title']);
-              echo($coinInfo['price']);
-          }
-
-        ?>
 
       </div>
     </div>

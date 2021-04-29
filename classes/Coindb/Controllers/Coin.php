@@ -67,13 +67,41 @@ class Coin
 
     public function showExchangeRage()
     {
-        $url = "https://api.coinbase.com/v2/exchange-rates?currency=BTC";
-        $json = \json_decode(\file_get_contents($url));
-        $dollar = $BTC = 0;
+        $apiUrl = "https://api.coinbase.com/v2/exchange-rates?currency=";
 
-        $coinData = [];
-        echo($json);
-        return $json;
+        $coinNames = [
+        1 => 'BTC',
+        2 => 'ADA',
+        3 => 'ETH',
+        4 => 'LTC',
+        5 => 'BCH'
+      ];
+
+        $coinInfo =[] ;
+
+        foreach ($coinNames as $eachCoin) {
+            $getValueUrl = $apiUrl . $eachCoin;
+  
+            $json = \json_decode(\file_get_contents($getValueUrl), true);
+
+            $coinTitle = $json['data']['currency'];
+            $coinValue = $json['data']['rates']['CAD'];
+
+            $coinArray[$coinTitle] = $coinValue;
+            // $coinInfos[] = [
+            //   $json['data']['currency'] => $json['data']['rates']['CAD']
+            // ];
+
+            $coinInfos[$json['data']['currency']] = $json['data']['rates']['CAD'];
+        }
+        var_dump($coinArray);
+        var_dump($coinInfos);
+
+        return [ 'template' => 'layout.html.php',
+      'variables' => [
+        'coinInfos' =>$coinInfos
+     ]
+ ];
     }
     
     public function home()
@@ -100,6 +128,7 @@ class Coin
         $title = 'Welcome to Coin Board';
 
         return [ 'template' => 'home.html.php',
+        'template' => 'coindata.html.php',
                   'title' => $title,
                   'variables' => [
                     'articles' => $articles,
