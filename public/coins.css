@@ -69,3 +69,6 @@ h3,h1,td *, th {
 td{
   text-transform: capitalize;
 }
+.article-list-box.d-flex.justify-content-between {
+  padding: 15px;
+}

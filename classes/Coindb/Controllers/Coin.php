@@ -64,6 +64,17 @@ class Coin
                      ]
                     ];
     }
+
+    public function showExchangeRage()
+    {
+        $url = "https://api.coinbase.com/v2/exchange-rates?currency=BTC";
+        $json = \json_decode(\file_get_contents($url));
+        $dollar = $BTC = 0;
+
+        $coinData = [];
+        echo($json);
+        return $json;
+    }
     
     public function home()
     {

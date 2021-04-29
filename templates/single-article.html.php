@@ -10,23 +10,24 @@
         <?php echo htmlspecialchars($user, ENT_QUOTES, 'UTF-8')  ?>
       </li>
       <li class="list-group-item d-flex justify-content-between align-items-center">
-        Date
-        <span class="badge bg-primary rounded-pill">
-          <?php echo htmlspecialchars($article['articledate'], ENT_QUOTES, 'UTF-8')  ?></span>
+        <div class="table-date-title"> Date </div>
+        <div><span class="badge bg-primary rounded-pill">
+            <?php echo htmlspecialchars($article['articledate'], ENT_QUOTES, 'UTF-8')  ?></span>
+        </div>
       </li>
     </ul>
     <ul class="list-group list-group-horizontal">
       <li class="list-group-item d-flex justify-content-between align-items-center">
         Like
-        <span class="badge bg-primary rounded-pill">1</span>
+        <div><span class="badge bg-primary rounded-pill">1</span></div>
       </li>
       <li class="list-group-item d-flex justify-content-between align-items-center">
         Dislike
-        <span class="badge bg-primary rounded-pill">1</span>
+        <div><span class="badge bg-primary rounded-pill">1</span></div>
       </li>
       <li class="list-group-item d-flex justify-content-between align-items-center">
         Comment
-        <span class="badge bg-primary rounded-pill">1</span>
+        <div><span class="badge bg-primary rounded-pill">1</span></div>
       </li>
     </ul>
 
