@@ -163,7 +163,7 @@ class Coin
             return;
         }
 
-        $this -> articlesTable -> delete($_POST{'id'});
+        $this -> articlesTable -> delete($_POST['id']);
 
         header('location: /article/list');
     }
