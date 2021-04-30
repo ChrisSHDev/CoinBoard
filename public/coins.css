@@ -1,5 +1,17 @@
 
+body{
+  font-size:16px;
+}
 
+.light-color{
+  background-color: #4f5b62 !important;
+  color: white !important;
+}
+
+.bg-darker {
+  background-color: #000a12 !important;
+  color: white !important;
+}
 .table-subject {
     width: 67%;
 }
@@ -58,7 +70,7 @@ body .bg-dark, .btn-dark {
   background-color: #263238!important;
 }
 
-h3,h1,td *, th {
+h3,h1,td a, th {
   color: #000a12 !important;
 }
 
@@ -71,4 +83,32 @@ td{
 }
 .article-list-box.d-flex.justify-content-between {
   padding: 15px;
+}
+
+.coin-symbol img {
+  width: 2em;
+}
+
+span#change-ratio {
+  font-weight: 600;
+}
+
+h2, h3{
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+}
+
+.title-box img {
+    max-width: 7rem;
+  margin-left: 0.5rem;
+}
+
+.title-box p {margin-right: 0px;font-weight: 600;}
+
+.light-font{
+  color: #263238 !important;
+}
+
+.title-box a {
+  font-weight: 600;
 }

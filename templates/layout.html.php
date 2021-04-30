@@ -7,13 +7,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <link rel="stylesheet" href="/coins.css">
-
+  <script src="https://kit.fontawesome.com/b423b412fd.js" crossorigin="anonymous"></script>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous">
   </script>
-
+  <script type="text/javascript" src="/coins.js"></script>
   <title><?= $title ?></title>
 </head>
 
@@ -30,11 +30,7 @@
             <a class="blog-header-logo text-dark" href="/"><img src="/assets/logo-removebg.png" alt=""></a>
           </div>
           <div class="col-4 d-flex justify-content-end align-items-center">
-            <?php if ($loggedIn) : ?>
-            <a class="btn btn-sm btn-outline-secondary" href="/logout">Log Out</a>
-            <?php else : ?>
-            <a class="btn btn-sm btn-outline-secondary" href="/login">Log In</a>
-            <?php endif; ?>
+
           </div>
         </div>
       </header>
@@ -48,7 +44,7 @@
           </button>
 
           <div class="collapse navbar-collapse justify-content-center" id="navbarColor01">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0 ">
+            <ul class="navbar-nav align-items-center me-auto mb-2 mb-lg-0 col-lg-12 ">
               <li class="nav-item">
                 <a class="nav-link active" aria-current="page" href="/">Home</a>
               </li>
@@ -67,23 +63,24 @@
                 <a class="nav-link" href="#">Charts</a>
               </li>
 
+              <li class="nav-item login-btn ms-auto">
+                <?php if ($loggedIn) : ?>
+                <a class="btn btn-sm light-color" href="/logout">Log Out</a>
+                <?php else : ?>
+                <a class="btn btn-sm bg-darker" href="/login">Log In</a>
+                <?php endif; ?>
+              </li>
             </ul>
           </div>
         </div>
       </nav>
+
     </div>
   </div>
   <main class="container-xl">
-    <div class="row">
-      <div class="coinapibox">
 
+    <?= $output ?>
 
-
-      </div>
-    </div>
-    <div class="row justify-content-center">
-      <?= $output ?>
-    </div>
   </main>
 
   <footer class="container-xl d-flex justify-content-center">

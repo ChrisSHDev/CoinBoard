@@ -65,9 +65,26 @@ class Coin
                     ];
     }
 
-    public function showExchangeRage()
+    private function getApi($url)
     {
-        $apiUrl = "https://api.coinbase.com/v2/exchange-rates?currency=";
+        $ch = curl_init();
+        // IMPORTANT: the below line is a security risk, read https://paragonie.com/blog/2017/10/certainty-automated-cacert-pem-management-for-php-software
+        // in most cases, you should set it to true
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_USERAGENT, 'Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; SV1; .NET CLR 1.0.3705; .NET CLR 1.1.4322)');
+        $result = curl_exec($ch);
+        
+        curl_close($ch);
+
+        return json_decode($result, true);
+    }
+
+    public function showExchangeRate()
+    {
+        $coinStats = $this -> getApi('https://api.pro.coinbase.com/products/stats');
+      
 
         $coinNames = [
         1 => 'BTC',
@@ -80,28 +97,23 @@ class Coin
         $coinInfo =[] ;
 
         foreach ($coinNames as $eachCoin) {
-            $getValueUrl = $apiUrl . $eachCoin;
-  
-            $json = \json_decode(\file_get_contents($getValueUrl), true);
+            $getValueUrl = 'https://api.coinbase.com/v2/exchange-rates?currency=' . $eachCoin;
 
-            $coinTitle = $json['data']['currency'];
-            $coinValue = $json['data']['rates']['CAD'];
+            $coinCurrency = $this -> getApi($getValueUrl);
 
-            $coinArray[$coinTitle] = $coinValue;
-            // $coinInfos[] = [
-            //   $json['data']['currency'] => $json['data']['rates']['CAD']
-            // ];
-
-            $coinInfos[$json['data']['currency']] = $json['data']['rates']['CAD'];
+            $coinSelector = $eachCoin . '-USD';
+            $title = 'Welcome to Coin Board';
+            $coinInfos[] = [
+                      'name' => $coinCurrency['data']['currency'],
+                       'CAD' => $coinCurrency['data']['rates']['CAD'],
+                       'USD' => $coinCurrency['data']['rates']['USD'],
+                       'volume' => $coinStats[$coinSelector]['stats_24hour']['volume'],
+                       'changes' => ($coinStats[$coinSelector]['stats_24hour']['last'] - $coinStats[$coinSelector]['stats_24hour']['open']),
+                       'ratio' => (($coinStats[$coinSelector]['stats_24hour']['last'] / $coinStats[$coinSelector]['stats_24hour']['open'] - 1) * 100)
+            ];
         }
-        var_dump($coinArray);
-        var_dump($coinInfos);
 
-        return [ 'template' => 'layout.html.php',
-      'variables' => [
-        'coinInfos' =>$coinInfos
-     ]
- ];
+        return $coinInfos;
     }
     
     public function home()
@@ -109,6 +121,10 @@ class Coin
         $result = $this -> articlesTable -> findAll();
 
         $jokes = [];
+
+        $coins = [];
+
+        $coins = $this -> showExchangeRate();
 
         foreach ($result as $article) {
             $user = $this -> usersTable -> findById($article['userId']);
@@ -128,11 +144,12 @@ class Coin
         $title = 'Welcome to Coin Board';
 
         return [ 'template' => 'home.html.php',
-        'template' => 'coindata.html.php',
+                  'dataOut' => 'coindata.html.php',
                   'title' => $title,
                   'variables' => [
                     'articles' => $articles,
-                    'userId' => $user['id'] ?? null
+                    'userId' => $user['id'] ?? null,
+                    'coins' => $coins
                  ]
              ];
     }
