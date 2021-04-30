@@ -29,6 +29,9 @@ class Coin
             $categoryId = '';
         }
         
+        $coins =[];
+        $coins = $this -> showExchangeRate();
+
         $articles = [];
 
         foreach ($result as $article) {
@@ -54,13 +57,15 @@ class Coin
         $isLoggedIn = $this -> authentication -> isLoggedIn();
 
         return ['template' => 'articles.html.php',
+                  'dataOut' => 'coindata.html.php',
                      'title' => $title,
                      'variables' => [
                         'totalArticles' => $totalArticles,
                         'articles' => $articles,
                         'categoryId' => $categoryId,
                         'userId' => $author['id'] ?? null,
-                        'loggedIn' => $isLoggedIn
+                        'loggedIn' => $isLoggedIn,
+                        'coins' => $coins
                      ]
                     ];
     }
