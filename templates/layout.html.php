@@ -27,7 +27,7 @@
 
           </div>
           <div class="col-4 text-center">
-            <a class="blog-header-logo text-dark" href="/"><img src="/assets/logonobg.png"></a>
+            <a class="blog-header-logo text-dark" href="/"><img src="/public/assets/logonobg.png"></a>
           </div>
           <div class="col-4 d-flex justify-content-end align-items-center">
 
