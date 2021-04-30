@@ -2,7 +2,7 @@
   <div class="col-6 freeboard-box">
     <div class="title-box d-flex align-items-center">
       <h3>Bitcoin Forum</h3>
-      <a href="#" class="ms-auto light-font">
+      <a href="/article/list?categoryId=1" class="ms-auto light-font">
         <i class="far fa-plus-square"></i> Read More
       </a>
     </div>
@@ -38,7 +38,7 @@
   <div class="col-6 freeboard-box">
     <div class="title-box d-flex align-items-center">
       <h3>Altcoin Forum</h3>
-      <a href="#" class="ms-auto light-font">
+      <a href="/article/list?categoryId=2" class="ms-auto light-font">
         <i class="far fa-plus-square"></i> Read More
       </a>
     </div>
