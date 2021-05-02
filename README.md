@@ -99,10 +99,14 @@
 ### Website Structure
 
 ---
+<img src="https://user-images.githubusercontent.com/46757889/116830105-bcee3200-ab5c-11eb-96e7-a44418bafb68.png" />
 
 ### Databse Structure
 
 ---
+
+<img src="https://user-images.githubusercontent.com/46757889/116829012-2b2ff600-ab57-11eb-83a7-b9526ebb9b51.png" />
+
 
 <div id="new"/>
 
