@@ -16,7 +16,7 @@
 
 <!-- PROJECT LOGO -->
 
-# Card maker
+# Coin Board Web!
 
 - A community website for cryptocurrency investors
 
@@ -69,6 +69,8 @@
 ### Website Preview
 
 ---
+<img src="https://user-images.githubusercontent.com/46757889/116824185-be5c3200-ab3d-11eb-9dba-243bb51d0db6.png" />
+
 
 - Cryptocurrency market information from Coinbase API
 - Preview board for the recent posts
@@ -77,8 +79,16 @@
 
 ---
 
+<img src="https://user-images.githubusercontent.com/46757889/116824231-00857380-ab3e-11eb-84cb-b2cd274dcbf6.png" />
+
+
 - A page for all articles, bitcoin category and altcoin category
+
+<img src="https://user-images.githubusercontent.com/46757889/116827697-45fe6c80-ab4f-11eb-9e39-0153673b1d2d.png" />
+
 - A page for Log-in or Sign in
+
+<img src="https://user-images.githubusercontent.com/46757889/116827812-eeaccc00-ab4f-11eb-8493-240721593d0a.png" />
 
 - Only logged in user can see edit or delete buttons
 
@@ -89,10 +99,14 @@
 ### Website Structure
 
 ---
+<img src="https://user-images.githubusercontent.com/46757889/116830105-bcee3200-ab5c-11eb-96e7-a44418bafb68.png" />
 
 ### Databse Structure
 
 ---
+
+<img src="https://user-images.githubusercontent.com/46757889/116829012-2b2ff600-ab57-11eb-83a7-b9526ebb9b51.png" />
+
 
 <div id="new"/>
 
