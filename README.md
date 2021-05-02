@@ -18,7 +18,7 @@
 
 # Card maker
 
--   명함을 만드는 웹페이지
+- A community website for cryptocurrency investors
 
 ---
 
@@ -26,13 +26,13 @@
 <details open="open">
   <summary><h2 style="display: inline-block">Table of Contents</h2></summary>
   <ol>
-    <li><a href="#reason">프로젝트 목적</a></li>
+    <li><a href="#reason">A Purpose of a project</a></li>
     <li><a href="#use-tech">Use tech</a></li>
     <li>
       <a href="#about-the-project">About The Project</a>
     </li>
-    <li><a href="#structure">구조 및 구현내용</a></li>
-    <li><a href="#new">알게된 것</a></li>
+    <li><a href="#structure">Structure</a></li>
+    <li><a href="#new">What I learned</a></li>
     <li><a href="#reference">Reference</a></li>
   </ol>
 </details>
@@ -41,25 +41,21 @@
 
 <div id="reason"/>
 
-## 프로젝트 목적
+## A Purpose of a project
 
--   React hook의 숙련도를 늘리기 위한 프로젝트
--   firebase api, cloudinary api 학습
--   React router 학습
+- Learned CRUD operation with PHP, MySql Database
+- Learned how to get data from API
+- Learned relational database structure
 
 <!--USE TECH-->
 
 ## Use tech
 
 <span id="use-tech">
-  <img src="https://img.shields.io/badge/Javascript-orange?style=flat-square&logo=JavaScript&logoColor=white"/>
-  <img src="https://img.shields.io/badge/css-blue?style=flat-square&logo=CSS3&logoColor=white"/>
-  <img src="https://img.shields.io/badge/HTML-red?style=flat-square&logo=HTML5&logoColor=white"/>
-  <img src="https://img.shields.io/badge/React-blue?style=flat-square&logo=React&logoColor=white"/>
-  <img src="https://img.shields.io/badge/ReactRouter-critical?style=flat-square&logo=React Router&logoColor=white"/>
-  <img src="https://img.shields.io/badge/firebase-yellow?style=flat-square&logo=firebase&logoColor=white"/>
-  <img src="https://img.shields.io/badge/Cloudinary-orange?style=flat-square&logoColor=white"/>
-
+<img src="https://img.shields.io/badge/PHP-777bb3?style=flat-square&logo=php&logoColor=white"/>
+<img src="https://img.shields.io/badge/Javascript-edd718?style=flat-square&logo=JavaScript&logoColor=white"/>
+<img src="https://img.shields.io/badge/css-blue?style=flat-square&logo=CSS3&logoColor=white"/>
+<img src="https://img.shields.io/badge/HTML-red?style=flat-square&logo=HTML5&logoColor=white"/>
 </span>
 
 ---
@@ -68,93 +64,50 @@
 
 ## About The Project
 
-[Demo link](https://cardmaker-kwon.netlify.app/)
+[Demo link](https://coinboardweb.herokuapp.com/)
 
-### 초기화면
-
----
-
-<div>
-<img width="45%" alt="img" src="https://user-images.githubusercontent.com/59603575/105945507-c02ed900-60a8-11eb-96ee-6bb7a82a391b.png">
-
-<img width="45%" alt="img" src="https://user-images.githubusercontent.com/59603575/105945524-c755e700-60a8-11eb-9853-fe0d2ab439e8.png">
-</div>
-
-<div>
-<img width="46%" alt="img" src="https://user-images.githubusercontent.com/59603575/105945519-c58c2380-60a8-11eb-871d-4dfc189d4198.png">
-<img width="45%" alt="gif" src="https://user-images.githubusercontent.com/59603575/105945799-4e0ac400-60a9-11eb-987c-ef00cf142905.gif">
-</div>
-
--   초기화면
--   타이핑 효과, firebase auth를 이용한 로그인 효과 구현
-
-### 카드 만드는 페이지
+### Website Preview
 
 ---
 
-<div>
-<img width="45%" alt="스크린샷 2021-01-16 오후 4 09 47" src="https://user-images.githubusercontent.com/59603575/105945952-9f1ab800-60a9-11eb-80e2-4324282ea38b.png">
-<img width="46%" alt="gif" src="https://user-images.githubusercontent.com/59603575/105945809-5400a500-60a9-11eb-96f3-7c2363c35aad.gif">
-</div>
+- Cryptocurrency market information from Coinbase API
+- Preview board for the recent posts
 
--   font color, background color, name 등등 여러 input을 입력받아 firebase realtime에 올리는 파트.
--   edit (왼쪽 컨테이너): 변경되는 사항이 있을때마다 firebase에 데이터를 씀
--   view (오른쪽 컨테이너): firebase.read.on을 이용해서 firebase에서 변경되는 사항이 있을때마다 업데이트
+### Articles Page
+
+---
+
+- A page for all articles, bitcoin category and altcoin category
+- A page for Log-in or Sign in
+
+- Only logged in user can see edit or delete buttons
 
 ---
 
 ## Structure
 
-
-### 전체 구조
-
-<img width="1680" alt="스크린샷 2021-01-16 오후 4 10 08" src="https://user-images.githubusercontent.com/59603575/105948977-49e1a500-60af-11eb-8249-133fc1b50e0e.png">
+### Website Structure
 
 ---
 
-### 기능
-
-<img width="1680" style="margin:0; padding:0;" alt="스크린샷 2021-01-16 오후 4 10 08" src="https://user-images.githubusercontent.com/59603575/105949828-b4dfab80-60b0-11eb-971d-d4644c5701db.png">
-
-1. fire base auth
-2. auth 되었을때만 eidt 가능
-3. firebase.read.on을 이용해서 firebase데이터가 변경될때마다 app의 state.data 업데이트
+### Databse Structure
 
 ---
 
 <div id="new"/>
 
-## 알게된 것
+## What I learned
 
--   useEffect 학습
--   React router 학습
--   firebase auth, realtimeDataBase 사용법 학습
--   cloudinary 
+- How to CRUD operation PHP, MySql
+- How to OOP with PHP
+- Relational Database Structure
 
 ---
 
 ## Reference
 
-Reference Link : </br>
-[firebase](https://firebase.google.com/docs/database/web/read-and-write) </br>
-[cloudinary doc](https://cloudinary.com/documentation/react_image_and_video_upload) </br>
-[create react](https://create-react-app.dev)</br>
-[dream coding ellie](https://academy.dream-coding.com)</br>
-[typing effect](https://www.youtube.com/watch?v=T4VE_6v9hFs&t=450s)
+Reference : </br>
+[PHP & MySQL: Novice to Ninja: Get Up to Speed With PHP the Easy Way](https://www.amazon.ca/PHP-MySQL-Novice-Ninja-Speed/dp/0994346980)<br/>
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
-
-[contributors-shield]: https://img.shields.io/github/contributors/othneildrew/Best-README-Template.svg?style=for-the-badge
-[contributors-url]: https://github.com/othneildrew/Best-README-Template/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/othneildrew/Best-README-Template.svg?style=for-the-badge
-[forks-url]: https://github.com/othneildrew/Best-README-Template/network/members
-[stars-shield]: https://img.shields.io/github/stars/othneildrew/Best-README-Template.svg?style=for-the-badge
-[stars-url]: https://github.com/othneildrew/Best-README-Template/stargazers
-[issues-shield]: https://img.shields.io/github/issues/othneildrew/Best-README-Template.svg?style=for-the-badge
-[issues-url]: https://github.com/othneildrew/Best-README-Template/issues
-[license-shield]: https://img.shields.io/github/license/othneildrew/Best-README-Template.svg?style=for-the-badge
-[license-url]: https://github.com/othneildrew/Best-README-Template/blob/master/LICENSE.txt
-[linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
-[linkedin-url]: https://linkedin.com/in/othneildrew
-[product-screenshot]: images/screenshot.png
