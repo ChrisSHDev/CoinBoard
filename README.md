@@ -16,7 +16,7 @@
 
 <!-- PROJECT LOGO -->
 
-# Card maker
+# Coin Board Web!
 
 - A community website for cryptocurrency investors
 
@@ -69,6 +69,8 @@
 ### Website Preview
 
 ---
+<img src="https://user-images.githubusercontent.com/46757889/116824185-be5c3200-ab3d-11eb-9dba-243bb51d0db6.png" />
+
 
 - Cryptocurrency market information from Coinbase API
 - Preview board for the recent posts
@@ -76,6 +78,9 @@
 ### Articles Page
 
 ---
+
+<img src="https://user-images.githubusercontent.com/46757889/116824231-00857380-ab3e-11eb-84cb-b2cd274dcbf6.png" />
+
 
 - A page for all articles, bitcoin category and altcoin category
 - A page for Log-in or Sign in
