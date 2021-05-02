@@ -83,7 +83,12 @@
 
 
 - A page for all articles, bitcoin category and altcoin category
+
+<img src="https://user-images.githubusercontent.com/46757889/116827697-45fe6c80-ab4f-11eb-9e39-0153673b1d2d.png" />
+
 - A page for Log-in or Sign in
+
+<img src="https://user-images.githubusercontent.com/46757889/116827812-eeaccc00-ab4f-11eb-8493-240721593d0a.png" />
 
 - Only logged in user can see edit or delete buttons
 
