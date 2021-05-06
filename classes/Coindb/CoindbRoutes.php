@@ -17,12 +17,13 @@ class CoindbRoutes implements \FrameWork\Routes
         $this -> usersTable = new \FrameWork\DatabaseTable($pdo, 'user', 'id');
         $this -> authentication = new \FrameWork\Authentication($this -> usersTable, 'email', 'password');
         $this -> tagsTable = new \FrameWork\DatabaseTable($pdo, 'tag', 'id');
+        $this -> articletagsTable = new \FrameWork\DatabaseTable($pdo, 'article_tag', 'tagId');
     }
 
     public function getRoutes(): array
     {
         $userController = new \Coindb\Controllers\Register($this -> usersTable);
-        $articleController = new \Coindb\Controllers\Coin($this -> articlesTable, $this -> usersTable, $this -> authentication);
+        $articleController = new \Coindb\Controllers\Coin($this -> articlesTable, $this -> usersTable, $this -> tagsTable, $this -> articletagsTable, $this -> authentication);
         $loginController = new \Coindb\Controllers\Login($this->authentication);
         $tagController = new \Coindb\Controllers\Tag($this -> tagsTable);
         
@@ -115,6 +116,20 @@ class CoindbRoutes implements \FrameWork\Routes
                       'GET' => [
                         'controller' => $tagController,
                         'action' => 'edit'
+                      ],
+                      'login' => true
+                    ],
+                    'tag/list' => [
+                      'GET' => [
+                        'controller' => $tagController,
+                        'action' => 'list'
+                      ],
+                      'login' => true
+                    ],
+                    'tag/delete' => [
+                      'POST' => [
+                        'controller' => $tagController,
+                        'action' => 'delete'
                       ],
                       'login' => true
                     ]

@@ -9,12 +9,17 @@ class Coin
 {
     private $usersTable;
     private $articlesTable;
+    private $authentication;
+    private $tagsTable;
+    private $articletagsTable;
 
-    public function __construct(DatabaseTable $articlesTable, DatabaseTable $usersTable, Authentication $authentication)
+    public function __construct(DatabaseTable $articlesTable, DatabaseTable $usersTable, DatabaseTable $tagsTable, DatabaseTable $articletagsTable, Authentication $authentication)
     {
         $this -> articlesTable = $articlesTable;
         $this -> usersTable = $usersTable;
+        $this -> tagsTable = $tagsTable;
         $this -> authentication = $authentication;
+        $this -> articletagsTable = $articletagsTable;
     }
 
     public function list()
@@ -190,12 +195,27 @@ class Coin
 
         $this -> articlesTable -> save($article);
 
+        $currentArticleId = $this -> articlesTable -> findLast();
+
+        foreach ($_POST['tag'] as $tagId) {
+            $tag['id'][] = $tagId;
+        }
+
+        var_dump($currentArticleId);
+        $articleTags = [
+              'articleId' => intval($currentArticleId[0]['id']),
+              'tagId' => $tag['id']
+      ];
+        
+        $this -> articletagsTable -> saveTag($articleTags);
+
         header('location: /article/list');
     }
 
     public function edit()
     {
         $user = $this -> authentication -> getUser();
+        $tags = $this -> tagsTable -> findAll();
         
         if (isset($_GET['id'])) {
             $article = $this -> articlesTable -> findById($_GET['id']);
@@ -207,7 +227,8 @@ class Coin
                     'title' => $title,
                     'variables' => [
                         'article' => $article ?? null,
-                        'userId' => $user['id'] ?? null
+                        'userId' => $user['id'] ?? null,
+                        'tags' => $tags
                     ]
                     
                 ];

@@ -19,6 +19,13 @@
       <option value="2">Altcoin</option>
     </select>
   </div>
+  <div class="mb-3">
+    <label for="tag" class="form-label">Tags</label>
+    <?php foreach ($tags as $tag): ?>
+    <input type="checkbox" name="tag[]" value="<?php echo $tag['id']; ?>" />
+    <label><?php echo $tag['name']; ?></label>
+    <?php endforeach; ?>
+  </div>
   <input type="submit" name="submit" value="Submit">
 </form>
 <?php else: ?>

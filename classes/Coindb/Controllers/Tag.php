@@ -29,9 +29,30 @@ class Tag
     public function saveEdit()
     {
         $tag = $_POST['tag'];
-        var_dump($tag);
+
         $this -> tagsTable -> save($tag);
 
-        //header('location: /tag/list');
+        header('location: /tag/list');
+    }
+
+    public function list()
+    {
+        $tags = $this -> tagsTable -> findAll();
+
+        $title = 'Tags List';
+
+        return ['template' => 'tags.html.php',
+              'title' => $title,
+              'variables' => [
+                'tags' => $tags
+              ]
+              ];
+    }
+
+    public function delete()
+    {
+        $this -> tagsTable -> delete($_POST['id']);
+
+        header('location: /tag/list');
     }
 }

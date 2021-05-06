@@ -21,7 +21,7 @@ class DatabaseTable
     {
         $query = $this -> pdo -> prepare($sql);
         $query -> execute($parameters);
-        var_dump($parameters);
+
         return $query;
     }
 
@@ -82,8 +82,6 @@ class DatabaseTable
         
         $fields = $this -> processDates($fields);
 
-        \var_dump($query);
-
         $this -> query($query, $fields);
     }
 
@@ -102,7 +100,7 @@ class DatabaseTable
         $fields['primaryKey'] = $fields['id'];
 
         $fields = $this -> processDates($fields);
-        \var_dump($query);
+
         $this -> query($query, $fields);
     }
 
@@ -119,6 +117,12 @@ class DatabaseTable
         return $result -> fetchAll();
     }
 
+    public function findLast()
+    {
+        $result = $this -> query('SELECT * FROM ' . $this -> table . ' ORDER BY id DESC LIMIT 1');
+        return $result -> fetchAll();
+    }
+    
     private function processDates($fields)
     {
         foreach ($fields as $key => $value) {
@@ -140,6 +144,19 @@ class DatabaseTable
             $this -> insert($record);
         } catch (\PDOException $e) {
             $this -> update($record);
+        }
+    }
+
+    public function saveTag($record)
+    {
+        var_dump($record);
+        foreach ($record['tagId'] as $tagId) {
+            $tagRecord = [
+            'articleId' => $record['articleId'],
+            'tagId' => intval($tagId)
+          ];
+            var_dump($tagRecord);
+            $this -> insert($tagRecord);
         }
     }
 }
