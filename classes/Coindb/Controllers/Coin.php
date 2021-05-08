@@ -182,11 +182,30 @@ class Coin
     {
         $user = $this -> authentication -> getUser();
 
+        foreach ($_POST['tag'] as $tagId) {
+            $tag['id'][] = $tagId;
+        }
+
         if (isset($_GET['id'])) {
             $article = $this -> articlesTable -> findById($_GET['id']);
             if ($article['userId'] != $user['id']) {
                 return;
             }
+
+            $currentArticleId = $this -> articlesTable -> findById($_GET['id']);
+            var_dump($currentArticleId);
+            $articleTags = [
+              'articleId' => intval($currentArticleId['id']),
+              'tagId' => $tag['id']
+      ];
+        } else {
+            $currentArticleId = $this -> articlesTable -> findLast();
+
+            var_dump($currentArticleId);
+            $articleTags = [
+                'articleId' => intval($currentArticleId[0]['id']),
+                'tagId' => $tag['id']
+        ];
         }
 
         $article = $_POST['article'];
@@ -194,22 +213,10 @@ class Coin
         $article['userId'] = $user['id'];
 
         $this -> articlesTable -> save($article);
-
-        $currentArticleId = $this -> articlesTable -> findLast();
-
-        foreach ($_POST['tag'] as $tagId) {
-            $tag['id'][] = $tagId;
-        }
-
-        var_dump($currentArticleId);
-        $articleTags = [
-              'articleId' => intval($currentArticleId[0]['id']),
-              'tagId' => $tag['id']
-      ];
         
         $this -> articletagsTable -> saveTag($articleTags);
 
-        header('location: /article/list');
+        //header('location: /article/list');
     }
 
     public function edit()
@@ -239,6 +246,18 @@ class Coin
         if (isset($_GET['id'])) {
             $article = $this -> articlesTable -> findById($_GET['id']);
             $user = $this -> usersTable -> findById($article['userId']);
+            $articleTag = $this -> articletagsTable -> find('articleId', $_GET['id']);
+
+            $tags = [];
+
+            var_dump($articleTag);
+            
+            foreach ($articleTag as $tag) {
+                var_dump($tag['tagId']);
+                $tags [] = $this -> tagsTable -> findById($tag['tagId']);
+            }
+
+            var_dump($tags);
         }
 
         $title = 'Article Page';
@@ -247,7 +266,8 @@ class Coin
               'title' => $title,
               'variables' => [
                 'article' => $article ?? null,
-                'user' => $user['name']
+                'user' => $user['name'],
+                'tags' => $tags
               ]];
     }
 }

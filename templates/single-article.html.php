@@ -19,6 +19,17 @@
       </ul>
       <ul class="list-group list-group-horizontal">
         <li class="list-group-item d-flex justify-content-between align-items-center">
+          Tags
+
+          <?php foreach ($tags as $tag) :?>
+          <div><span class="badge bg-primary rounded-pill">
+
+              <?php echo htmlspecialchars($tag['name'], ENT_QUOTES, 'UTF-8') ?>
+
+            </span></div>
+          <?php endforeach ?>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
           Like
           <div><span class="badge bg-primary rounded-pill">1</span></div>
         </li>
