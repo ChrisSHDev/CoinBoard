@@ -21,7 +21,7 @@ class DatabaseTable
     {
         $query = $this -> pdo -> prepare($sql);
         $query -> execute($parameters);
-
+        var_dump($parameters);
         return $query;
     }
 
@@ -82,6 +82,8 @@ class DatabaseTable
         
         $fields = $this -> processDates($fields);
 
+        \var_dump($query);
+
         $this -> query($query, $fields);
     }
 
@@ -100,7 +102,7 @@ class DatabaseTable
         $fields['primaryKey'] = $fields['id'];
 
         $fields = $this -> processDates($fields);
-
+        \var_dump($query);
         $this -> query($query, $fields);
     }
 
