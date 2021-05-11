@@ -28,12 +28,24 @@ class Coin
             $result = $this -> articlesTable -> find('categoryId', $_GET['categoryId']);
             $totalArticles = count($result);
             $categoryId = $_GET['categoryId'];
+        } elseif (isset($_GET['tag'])) {
+            $articleInTag = $this -> articletagsTable -> find('tagId', $_GET['tag']);
+            var_dump($articleInTag);
+            $tags = [];
+        
+            foreach ($articleInTag as $article) {
+                $result [] = $this -> articlesTable -> findById($article['articleId']);
+            }
+            $categoryId = '';
+            $totalArticles = count($result);
+            var_dump($totalArticles);
+            var_dump($result);
         } else {
             $result = $this -> articlesTable -> findAll();
             $totalArticles = $this -> articlesTable -> total();
             $categoryId = '';
         }
-        
+
         $coins =[];
         $coins = $this -> showExchangeRate();
 
@@ -182,10 +194,15 @@ class Coin
     {
         $user = $this -> authentication -> getUser();
 
-        foreach ($_POST['tag'] as $tagId) {
-            $tag['id'][] = $tagId;
-        }
 
+        if (isset($_POST['tag'])) {
+            foreach ($_POST['tag'] as $tagId) {
+                $tag['id'][] = $tagId;
+            }
+        } else {
+            $tag['id'] = [];
+        }
+        
         if (isset($_GET['id'])) {
             $article = $this -> articlesTable -> findById($_GET['id']);
             if ($article['userId'] != $user['id']) {
@@ -216,13 +233,14 @@ class Coin
         
         $this -> articletagsTable -> saveTag($articleTags);
 
-        //header('location: /article/list');
+        header('location: /article/list');
     }
 
     public function edit()
     {
         $user = $this -> authentication -> getUser();
         $tags = $this -> tagsTable -> findAll();
+        $articletags = $this -> articletagsTable -> findAll();
         
         if (isset($_GET['id'])) {
             $article = $this -> articlesTable -> findById($_GET['id']);
@@ -235,7 +253,8 @@ class Coin
                     'variables' => [
                         'article' => $article ?? null,
                         'userId' => $user['id'] ?? null,
-                        'tags' => $tags
+                        'tags' => $tags,
+                        'articletags' => $articletags
                     ]
                     
                 ];
@@ -270,4 +289,15 @@ class Coin
                 'tags' => $tags
               ]];
     }
+
+    // public function hasTag($tagId)
+    // {
+    //     $articleTags = $this -> articletagsTable -> find('tagId', );
+
+    //     foreach ($articletags as $articletag) {
+    //         if ($articletag -> tagId == $tagId) {
+    //             return true;
+    //         }
+    //     }
+    // }
 }

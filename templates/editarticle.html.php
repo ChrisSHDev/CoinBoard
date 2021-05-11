@@ -22,7 +22,13 @@
   <div class="mb-3">
     <label for="tag" class="form-label">Tags</label>
     <?php foreach ($tags as $tag): ?>
+    <?php if ($articletags['articleId']) {
+    ;
+} ?>
+    <input type="checkbox" checked name="tag[]" value="<?php echo $tag['id']; ?>" />
+
     <input type="checkbox" name="tag[]" value="<?php echo $tag['id']; ?>" />
+
     <label><?php echo $tag['name']; ?></label>
     <?php endforeach; ?>
   </div>
