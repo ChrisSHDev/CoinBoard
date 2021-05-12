@@ -1,5 +1,12 @@
 <?php if (empty($article['id']) || $userId == $article['userId']): ?>
-
+<?php function hasTag($articletags, $tagId)
+{
+    foreach ($articletags as $articletag) {
+        if ($articletag['tagId'] == $tagId) {
+            return true;
+        }
+    }
+} ?>
 <form action="" method="post">
   <input type="hidden" name="article[id]" value="<?php echo $article['id'] ?? ''; ?>">
   <div class="mb-3">
@@ -22,14 +29,15 @@
   <div class="mb-3">
     <label for="tag" class="form-label">Tags</label>
     <?php foreach ($tags as $tag): ?>
-    <?php if ($articletags['articleId']) {
-    ;
-} ?>
-    <input type="checkbox" checked name="tag[]" value="<?php echo $tag['id']; ?>" />
 
+    <?php if ($articletags && hasTag($articletags, $tag['id'])): ?>
+    <input type="checkbox" checked name="tag[]" value="<?php echo $tag['id']; ?>" />
+    <?php else: ?>
     <input type="checkbox" name="tag[]" value="<?php echo $tag['id']; ?>" />
+    <?php endif; ?>
 
     <label><?php echo $tag['name']; ?></label>
+
     <?php endforeach; ?>
   </div>
   <input type="submit" name="submit" value="Submit">

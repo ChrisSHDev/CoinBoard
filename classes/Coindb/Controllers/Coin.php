@@ -220,7 +220,7 @@ class Coin
 
             var_dump($currentArticleId);
             $articleTags = [
-                'articleId' => intval($currentArticleId[0]['id']),
+                'articleId' => intval($currentArticleId[0]['id'])+1,
                 'tagId' => $tag['id']
         ];
         }
@@ -240,10 +240,13 @@ class Coin
     {
         $user = $this -> authentication -> getUser();
         $tags = $this -> tagsTable -> findAll();
-        $articletags = $this -> articletagsTable -> findAll();
+        
         
         if (isset($_GET['id'])) {
             $article = $this -> articlesTable -> findById($_GET['id']);
+            $articletags = $this -> articletagsTable -> find('articleId', $_GET['id']);
+        } else {
+            $articletags = '';
         }
 
         $title = 'Edit Joke Article';
