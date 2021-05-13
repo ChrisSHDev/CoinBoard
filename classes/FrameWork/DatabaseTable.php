@@ -59,6 +59,16 @@ class DatabaseTable
         return $query -> fetchAll();
     }
 
+    public function deleteWhere($column, $value)
+    {
+        $query = 'DELETE FROM ' . $this -> table . ' WHERE ' . $column . '= :value';
+
+        $parameters = [
+          'value' => $value
+      ];
+
+        $query = $this -> query($query, $parameters);
+    }
 
     private function insert($fields)
     {
@@ -149,13 +159,11 @@ class DatabaseTable
 
     public function saveTag($record)
     {
-        var_dump($record);
         foreach ($record['tagId'] as $tagId) {
             $tagRecord = [
             'articleId' => $record['articleId'],
             'tagId' => intval($tagId)
           ];
-            var_dump($tagRecord);
             $this -> insert($tagRecord);
         }
     }

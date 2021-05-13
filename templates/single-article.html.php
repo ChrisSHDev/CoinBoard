@@ -24,7 +24,9 @@
           <?php foreach ($tags as $tag) :?>
           <div><span class="badge bg-primary rounded-pill">
 
-              <?php echo htmlspecialchars($tag['name'], ENT_QUOTES, 'UTF-8') ?>
+              <a href="/article/list?tag=<?php echo htmlspecialchars($tag['id'], ENT_QUOTES, 'UTF-8')?>">
+                <?php echo htmlspecialchars($tag['name'], ENT_QUOTES, 'UTF-8') ?>
+              </a>
 
             </span></div>
           <?php endforeach ?>
