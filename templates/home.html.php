@@ -8,8 +8,12 @@
     </div>
     <table class="table table-striped table-hover">
       <tbody>
+        <?php $i = 0; ?>
         <?php foreach ($articles as $article): ?>
         <?php if ($article['categoryId'] == '1'): ?>
+        <?php if (++$i == 6) {
+    break;
+} ?>
         <tr>
           <td class="table-subject">
             <a href="/article/page?id=<?php echo $article['id'] ?>">
@@ -44,8 +48,13 @@
     </div>
     <table class="table table-striped table-hover">
       <tbody>
+        <?php $j=0; ?>
         <?php foreach ($articles as $article): ?>
+
         <?php if ($article['categoryId'] == '2'): ?>
+        <?php if (++$i == 5) {
+    break;
+} ?>
         <tr>
 
           <td class="table-subject">
